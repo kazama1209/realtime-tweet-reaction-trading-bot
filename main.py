@@ -90,6 +90,8 @@ class StreamListener(tweepy.StreamListener):
 
 			# 買い判断が出た場合は買い注文を出す
 			if entry_side == 'buy':
+				print(f'{status.user.screen_name} tweeted!')
+
 				# 成り行き買い注文
 				order = bybit_api.create_order(symbol, 'market', 'buy', amount)
 				print(f'Buy: {now}')
@@ -102,6 +104,8 @@ class StreamListener(tweepy.StreamListener):
 
 			# 売り判断が出た場合は売り注文を出す
 			elif entry_side == 'sell':
+				print(f'{status.user.screen_name} tweeted!')
+
 				# 成り行き売り注文
 				order = bybit_api.create_order(symbol, 'market', 'sell', amount)
 				print(f'Sell: {now}')
