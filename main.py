@@ -47,19 +47,19 @@ def judge_entry_side(tweet_text):
 		and any([positive_word in tweet_text for positive_word in positive_words]) \
 		and any([negative_word in tweet_text for negative_word in negative_words]):
 		
-		return "stay"
+		return 'stay'
 
 	# 買い要因の単語が含まれていた場合は買い
 	elif any([target_coin_name in tweet_text for target_coin_name in target_coin_names]) \
 		and any([positive_word in tweet_text for positive_word in positive_words]):
 
-		return "buy"
+		return 'buy'
 	
 	# 売り要因の単語が含まれていた場合は売り
 	elif any([target_coin_name in tweet_text for target_coin_name in target_coin_names]) \
 		and any([negative_word in tweet_text for negative_word in negative_words]):
 
-		return "sell"
+		return 'sell'
 	
 	# それらしい単語が含まれていなかった場合も待機
 	else:
@@ -71,7 +71,7 @@ class StreamListener(tweepy.StreamListener):
 		global entry_flag
 
 		# 現在時刻を算出
-		now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+		now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 		# 未エントリーだった場合のみ以降の処理を行う
 		if entry_flag == False:
@@ -163,7 +163,7 @@ if entry_flag == True:
 	sleep(300)
 
 	# 現在時刻を算出
-	now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+	now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 	# 自分のポジション状況を確認
 	position = bybit_api.get_position(symbol)
