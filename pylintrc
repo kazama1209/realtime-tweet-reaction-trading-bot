@@ -1,1 +1,1 @@
-init-hook="./opt"
+init-hook="./"
