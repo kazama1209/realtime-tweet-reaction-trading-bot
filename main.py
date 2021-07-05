@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 load_dotenv()
 from bybit_api import BybitAPI
 
-# 狙いの通貨名（表記ゆれを考慮して複数指定）
-target_coin_names = [
+# 狙いの銘柄（表記ゆれを考慮して複数指定）
+target_symbols = [
     'ビットコイン',
     'bitcoin',
     'btc'
@@ -16,20 +16,24 @@ target_coin_names = [
 # 買い要因になりそうな単語（表記ゆれを考慮して複数指定）
 positive_words = [
     '買い',
+	'買った',
     'buy',
+	'bought',
     'moon'
 ]
 
 # 売り要因になりそうな単語（表記ゆれを考慮して複数指定）
 negative_words = [
     '売り',
-    'sell'
+	'売った',	
+    'sell',
+	'sold'
 ]
 
 # Bybit API
 bybit_api = BybitAPI()
 
-# 取引したい通貨ペア
+# 取引したい銘柄
 symbol = 'BTC/USD'
 
 # 注文量（USD）
@@ -38,25 +42,25 @@ amount = 1
 # エントリーフラグ
 entry_flag = False
 
-# ツイート本文中に狙いの通貨名（条件1）＋買い要因or売り要因の単語（条件2）が含まれるかを確認してエントリーの方向性を判断
+# ツイート本文中に狙いの銘柄（条件1）＋買い要因or売り要因の単語（条件2）が含まれるかを確認してエントリーの方向性を判断
 # 条件1と条件2は必ずセットである必要があり、どちらか片方だけでは成立しない
 # ex) ビットコイン 買い
 def judge_entry_side(tweet_text):
 	# 買い要因と売り要因、両方の単語が含まれていた場合は判断に困るので待機
-	if any([target_coin_name in tweet_text for target_coin_name in target_coin_names]) \
+	if any([target_symbol in tweet_text for target_symbol in target_symbols]) \
 		and any([positive_word in tweet_text for positive_word in positive_words]) \
 		and any([negative_word in tweet_text for negative_word in negative_words]):
 		
 		return 'stay'
 
 	# 買い要因の単語が含まれていた場合は買い
-	elif any([target_coin_name in tweet_text for target_coin_name in target_coin_names]) \
+	elif any([target_symbol in tweet_text for target_symbol in target_symbols]) \
 		and any([positive_word in tweet_text for positive_word in positive_words]):
 
 		return 'buy'
 	
 	# 売り要因の単語が含まれていた場合は売り
-	elif any([target_coin_name in tweet_text for target_coin_name in target_coin_names]) \
+	elif any([target_symbol in tweet_text for target_symbol in target_symbols]) \
 		and any([negative_word in tweet_text for negative_word in negative_words]):
 
 		return 'sell'
