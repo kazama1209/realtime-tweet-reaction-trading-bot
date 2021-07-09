@@ -1,5 +1,7 @@
 # realtime-tweet-reaction-trading-bot
 
+![Untitled Diagram(16)](https://user-images.githubusercontent.com/51913879/125142204-26d51a00-e152-11eb-8d60-09d0bed6d704.png)
+
 リアルタイムで特定のユーザーのツイートに反応する仮想通貨自動売買Bot。
 
 REST APIではなくSreaming APIを使っているため、対象ユーザーのツイートに対してより素早く反応する事ができるようになっている。
