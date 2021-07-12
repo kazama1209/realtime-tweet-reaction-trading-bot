@@ -8,26 +8,17 @@ from bybit_api import BybitAPI
 
 # 狙いの銘柄（表記ゆれを考慮して複数指定）
 target_symbols = [
-    'ビットコイン',
-    'bitcoin',
-    'btc'
+    'ビットコイン', 'bitcoin', 'btc'
 ]
 
 # 買い要因になりそうな単語（表記ゆれを考慮して複数指定）
 positive_words = [
-    '買い',
-	'買った',
-    'buy',
-	'bought',
-    'moon'
+    '買い', '買った', 'buy', 'bought', 'moon'
 ]
 
 # 売り要因になりそうな単語（表記ゆれを考慮して複数指定）
 negative_words = [
-    '売り',
-	'売った',	
-    'sell',
-	'sold'
+    '売り', '売った',	'sell', 'sold'
 ]
 
 # Bybit API
